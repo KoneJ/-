@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import Header from '@/components/common/Header';
@@ -12,7 +12,7 @@ interface Hospital {
   relationship: 'owner' | 'guardian' | 'unknown';
 }
 
-export default function EditPetPage() {
+function EditPetPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const petId = searchParams?.get('id');
@@ -620,3 +620,14 @@ export default function EditPetPage() {
   );
 }
 
+export default function EditPetPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen w-full max-w-mobile mx-auto bg-white flex items-center justify-center">
+        <div className="text-gray-500">로딩 중...</div>
+      </div>
+    }>
+      <EditPetPageContent />
+    </Suspense>
+  );
+}
