@@ -284,7 +284,7 @@ export default function CartPage() {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                <span>무료배송 조건 달성!</span>
+                <span>10만원 이상 구매시 무료배송</span>
               </div>
             )}
             <div className="pt-3 border-t border-gray-200">
