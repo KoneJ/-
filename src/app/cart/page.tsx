@@ -32,11 +32,15 @@ export default function CartPage() {
     },
   ]);
 
-  const shippingFee = 4000;
+  const FREE_SHIPPING_THRESHOLD = 100000; // 10만원
+  const BASE_SHIPPING_FEE = 4000;
+  
   const selectedItems = cartItems.filter(item => item.selected);
   const totalProductPrice = selectedItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const totalDiscount = selectedItems.reduce((sum, item) => sum + ((item.originalPrice - item.price) * item.quantity), 0);
+  const shippingFee = totalProductPrice >= FREE_SHIPPING_THRESHOLD ? 0 : BASE_SHIPPING_FEE;
   const totalPrice = totalProductPrice + shippingFee;
+  const amountForFreeShipping = FREE_SHIPPING_THRESHOLD - totalProductPrice;
 
   const handleQuantityChange = (id: number, delta: number) => {
     setCartItems(items =>
@@ -263,10 +267,26 @@ export default function CartPage() {
             </div>
             <div className="flex items-center justify-between">
               <span className="text-base text-gray-700">배송비</span>
-              <span className="text-base text-gray-900">
-                {shippingFee.toLocaleString()}원
+              <span className={`text-base ${shippingFee === 0 ? 'text-blue-600 font-semibold' : 'text-gray-900'}`}>
+                {shippingFee === 0 ? '무료' : `${shippingFee.toLocaleString()}원`}
               </span>
             </div>
+            {/* 무료 배송 안내 */}
+            {amountForFreeShipping > 0 ? (
+              <div className="flex items-center gap-1 text-sm text-blue-600">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <span>{amountForFreeShipping.toLocaleString()}원 더 담으면 무료배송</span>
+              </div>
+            ) : shippingFee === 0 && (
+              <div className="flex items-center gap-1 text-sm text-blue-600">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <span>무료배송 조건 달성!</span>
+              </div>
+            )}
             <div className="pt-3 border-t border-gray-200">
               <div className="flex items-center justify-between">
                 <span className="text-lg font-bold text-gray-900">
