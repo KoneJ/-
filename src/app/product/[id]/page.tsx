@@ -233,13 +233,6 @@ export default function ProductDetailPage() {
                 <span className="flex-shrink-0 text-gray-700 font-medium">구매정보</span>
                 <span className="text-gray-600">최대구매 5개 (1인)</span>
               </div>
-              <div className="flex items-start gap-3 text-sm">
-                <span className="flex-shrink-0 text-gray-700 font-medium">배송정보</span>
-                <div className="text-gray-600">
-                  <p>택배 · 배송비 3,000원</p>
-                  <p className="text-xs mt-1">제주 추가 5,000원, 제주 외 도서지역 추가 10,000원</p>
-                </div>
-              </div>
             </div>
 
             {/* 하단 버튼 */}
