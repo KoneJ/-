@@ -9,7 +9,7 @@ import Footer from '@/components/Home/Footer';
 export default function ProductDetailPage() {
   const router = useRouter();
   const params = useParams();
-  const productId = params.id;
+  const productId = params?.id as string;
   const [showPurchaseSheet, setShowPurchaseSheet] = useState(false);
   const [quantity, setQuantity] = useState(1);
 

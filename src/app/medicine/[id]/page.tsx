@@ -9,7 +9,7 @@ import Footer from '@/components/Home/Footer';
 export default function MedicineDetailPage() {
     const router = useRouter();
     const params = useParams();
-    const medicineId = params.id;
+    const medicineId = params?.id as string;
     const [showSurvey, setShowSurvey] = useState(false);
     const [showPayment, setShowPayment] = useState(false);
     const [answers, setAnswers] = useState({
