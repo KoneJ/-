@@ -15,7 +15,7 @@ interface Hospital {
 export default function EditPetPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const petId = searchParams.get('id');
+  const petId = searchParams?.get('id');
   
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [imagePreview, setImagePreview] = useState<string>('');
