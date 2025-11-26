@@ -161,9 +161,6 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             >
               출장 진료 내역
             </button>
-            <button className="w-full py-4 text-left text-lg font-medium text-gray-900 hover:bg-gray-50 transition-colors rounded-lg">
-              알림 (1)
-            </button>
             <button
               onClick={() => {
                 onClose();
